@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Danados Tech - Carrinho de Compras</title>
+    <style>
+               :root {
+            --primary-color: #f9532d;
+            --primary-dark: #1F252E;
+            --text-color: #ffffff;
+            --nav-bg-color: #2C2F35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+
+        .container {
+            padding: 0 8.4rem;
+        }
+
+        header {
+            position: relative;
+            box-shadow: 0 4px 17px rgba(0, 0, 0, .5);
+            background: var(--nav-bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .logo a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        ul {
+            display: flex;
+            gap: .6rem;
+            list-style-type: none;
+        }
+
+        li a {
+            display: inline-block;
+            padding: .5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 36px;
+            transition: background 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            animation: slideInBottom 0.5s ease forwards;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            flex: 1;
+        }
+
+        .item-quantity {
+            width: 60px;
+            margin-left: 20px;
+            text-align: center;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2C2F35;
+            color: var(--text-color);
+        }
+
+        .item-quantity:focus {
+            outline: none;
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        .preco-item {
+            margin-left: 20px;
+        }
+
+        .remover-botao {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+            margin-left: 20px;
+        }
+
+        .remover-botao:hover {
+            background-color: #d02e24;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            transition-duration: .5s;
+        }
+
+        .checkout-button:hover {
+            background-color: #218838;
+        }
+
+        .loading-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2;
+        }
+
+        .loading-animation {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary-color);
+            border-top: 5px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .mensagemObrigado {
+            text-align: center;
+            margin-top: 2rem;   
+            font-size: 1.2rem;
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .voltarCarrinho {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 60px;
+            text-decoration: none;  
+            margin: 0 auto;
+        }
+
+        .voltarCarrinho:hover {
+            background-color: #218838;
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInBottom {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .cart-container {
+                margin: 1rem auto;
+                padding: 10px;
+            }
+
+            .item-quantity {
+                width: 40px;
+            }
+
+            .checkout-button, .remover-botao {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+        /* Seus estilos vão aqui, como você já tem na sua estrutura */
+    </style>
+</head>
+<body>
+    <header class="container">
+        <div class="page-header">
+            <div class="logo"><a href="#">Danados Tech</a></div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="carrinho.html" class="active">Carrinho</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="cart-container">
+            <h2>Carrinho de Compras</h2>
+            <div id="cart-items"></div>
+            <div class="total"><strong>Total: </strong><span id="total">R$ 0,00</span></div>
+            <button class="checkout-button" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </main>
+
+    <div id="agradecimento" class="mensagemObrigado">
+        <p>Obrigado pela sua compra!</p>
+        <br>
+        <a href="#" class="voltarCarrinho" onclick="resetarCarrinho()">Voltar ao Carrinho</a>
+    </div>
+
+    <div id="loading" class="loading-container">
+        <div class="loading-animation"></div>
+    </div>
+
+    

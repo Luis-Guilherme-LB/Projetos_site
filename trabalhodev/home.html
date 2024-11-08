@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Danados Tech</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root {
+            --primary-color: #f9532d;
+            --primary-dark: #1F252E;
+            --text-color: #ffffff;
+            --nav-bg-color: #2C2F35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+
+        .container {
+            padding: 0 8.4rem;
+        }
+
+        header {
+            position: relative;
+            box-shadow: 0 4px 17px rgba(0, 0, 0, .5);
+            background: var(--nav-bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .logo a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        ul {
+            display: flex;
+            gap: .6rem;
+            list-style-type: none;
+        }
+
+        li a {
+            display: inline-block;
+            padding: .5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 36px;
+            transition: background 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            animation: slideInBottom 0.5s ease forwards;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(277px, 1fr));
+            row-gap: 2rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .main h3 {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .main h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards 0.3s;
+        }
+
+        .main p {
+            line-height: 1.7;
+            font-size: 1.15rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
+
+        .social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.4rem;
+            margin-top: 1.7rem;
+            justify-content: center;
+        }
+
+        .social a {
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            border: 1.6px solid var(--text-color);
+            border-radius: 50%;
+            padding: 0.39rem;
+            transition: all .3s ease-in-out;
+        }
+
+        .social a:hover {
+            color: var(--primary-dark);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .images img {
+            position: relative;
+            border-radius: 6px;
+            max-width: 100%;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards 0.8s;
+        }
+
+        .images {
+            width: 60%;
+            margin-left: auto;
+            position: relative;
+            z-index: -1;
+        }
+
+        footer {
+            background-color: var(--nav-bg-color);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin-top: 1rem;
+            color: var(--text-color);
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInBottom {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .container {
+                padding: 0 4.4rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 0 1.6rem;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            ul {
+                display: none;
+                flex-direction: column;
+                text-align: center;
+                background: var(--nav-bg-color);
+                position: absolute;
+                width: 100%;
+                top: 100%;
+                left: 0;
+                z-index: 2;
+            }
+
+            ul.active {
+                display: flex;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            header {
+                padding: 1rem;
+            }
+
+            .main h1 {
+                font-size: 2.5rem;
+            }
+
+            .images {
+                width: 100%;
+                margin: 0;
+            }
+
+            .social {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <div class="page-header">
+            <div class="logo">
+                <a href="#">Danados Tech</a>
+            </div>
+            <i class='bx bx-menu menu-icon' onclick="toggleMenu()"></i>
+            <ul id="menu">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre.html">Carrinho</a></li>
+
+            </ul>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="main">
+            <div class="detail">
+                <h3>Bem-vindo à Danados Tech</h3>
+                <h1>Oferecendo as melhores ofertas</h1>
+                <p>Estamos aqui para fornecer equipamentos de alta qualidade junto de preços que cabem no bolso.</p>
+            </div>
+            <div class="img-sec">
+                <div class="images">
+                    <img src="img/logodt1.png" class="img-w">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="social">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+        </div>
+        <p>&copy; 2024 Danados Tech. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

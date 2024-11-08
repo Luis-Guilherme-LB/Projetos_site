@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="intro.css">
+    <title>Fonte Corsair - Danados Tech</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root {
+            --primary-color: #f9532d;
+            --primary-dark: #1F252E;
+            --text-color: #ffffff;
+            --nav-bg-color: #2C2F35;
+            --light-bg: #35393F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg-color);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, .5);
+            z-index: 1;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+            list-style-type: none;
+        }
+
+        .nav-menu li a {
+            padding: .5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 36px;
+            transition: .3s;
+        }
+
+        .nav-menu li a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg-color);
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* Product Details Section */
+        .produto-container {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .produto-imagem img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .produto-detalhes {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .produto-detalhes h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .produto-detalhes p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .produto-detalhes ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .produto-detalhes ul li {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .produto-preco {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .botao-comprar {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block;
+        }
+
+        .botao-comprar:hover {
+            background-color: #d84315;
+            transform: translateY(-2px);
+        }
+
+        /* Image Grid Section */
+        .image-grid {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .produto-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 15px;
+            }
+
+            .produto-detalhes h2 {
+                font-size: 1.5rem;
+            }
+
+            .produto-detalhes p,
+            .produto-detalhes ul li {
+                font-size: 1rem;
+            }
+
+            .produto-preco {
+                font-size: 1.3rem;
+            }
+
+            .botao-comprar {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+    
+
+    </style>
+</head>
+
+<body>
+
+    <header class="container">
+        <div class="page-header">
+            <div class="logo">
+                Danados Tech
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class='bx bx-menu'></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="produtos.html" class="active">Produtos</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="produto-container">
+        <div class="produto-imagem">
+            <!-- Adicione um id à imagem principal -->
+            <img id="main-image" src="img/fonte2 ft1.webp" alt="Fonte Corsair 750W" width="400" height="400">
+
+            <!-- Seção de miniaturas de imagem -->
+            <section class="image-grid">
+                <img src="img/fonte2 ft1.webp" alt="Produto 1" onclick="updateMainImage(this.src)">
+                <img src="img/fonte2 ft2.webp" alt="Produto 2" onclick="updateMainImage(this.src)">
+                <img src="img/fonte2 ft3.webp" alt="Produto 3" onclick="updateMainImage(this.src)">
+                <img src="img/fonte2 ft4.webp" alt="Produto 4" onclick="updateMainImage(this.src)">
+                
+                <img src="img/fonte2 ft45webp.webp" alt="Produto 5" onclick="updateMainImage(this.src)">
+                
+                <img src="img/fonte2 ft6webp.webp" alt="Produto 6" onclick="updateMainImage(this.src)">
+            </section>
+        </div>
+
+       
+        <div class="produto-detalhes">
+            <h2>Fonte Corsair 750W</h2>
+            <p class="produto-preco">R$ 400,00</p>
+            <p>Com a fonte de alimentação Evga 650 B5, você pode garantir a corrente contínua e estável do seu computador desktop e otimizar a operação de seus componentes.
+
+                Controle de temperatura
+                Por meio de seu sistema de resfriamento, você pode manter a temperatura ideal de seus componentes e evitar o superaquecimento.
+                
+                Sem ruídos ou distrações
+                Devido ao seu funcionamento silencioso, seu equipamento funcionará minimizando o nível de ruído, para tornar seu dia mais agradável.
+                
+                Proteção garantida
+                O sistema de proteção OPP monitora constantemente a corrente e, no caso de detectar uma sobrecarga de energia, desliga o dispositivo para evitar danos.</p>
+            <ul>
+                <li>Potência: 750W</li>
+                <li>Certificação: 80 PLUS Bronze</li>
+                <li>135 mm de diâmetro da ventoinha</li>
+                <li>Compatibilidade: ATX</li>
+            </ul>
+            <a href="carrinho.html" class="botao-comprar">Adicionar ao carrinho</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+
+        // Função para atualizar a imagem principal
+        function updateMainImage(src) {
+            document.getElementById('main-image').src = src;
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+

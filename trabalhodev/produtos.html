@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="intro.css">
+    <title>Danados Tech</title>
+    <style>
+        /* Fonte e cores */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root {
+            --primary-color: #f9532d;
+            --primary-dark: #1F252E;
+            --text-color: #ffffff;
+            --nav-bg-color: #2C2F35;
+        }
+
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+
+        .container {
+            padding: 0 8.4rem;
+        }
+
+        /* Barra de pesquisa */
+        .search-bar {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 300px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Cabeçalho */
+        header {
+            position: relative;
+            box-shadow: 0 4px 17px rgba(0, 0, 0, .5);
+            background: var(--nav-bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            animation: leftSideAni 1s ease forwards;
+        }
+
+        .logo a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Animação para o cabeçalho */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes leftSideAni {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Menu Hamburguer */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 4px;
+            transition: 0.3s;
+        }
+
+        /* Estilo do Menu */
+        #navMenu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+        }
+
+        #navMenu.show {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--nav-bg-color);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            max-height: 300px;
+        }
+
+        ul {
+            display: flex;
+            gap: .6rem;
+        }
+
+        li a {
+            display: inline-block;
+            padding: .5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 36px;
+            transition: .3s;
+            opacity: 1;
+            animation: navani .3s ease forwards;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Produtos */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .product-card {
+            background-color: #2C2F35;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card h4 {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: var(--primary-color);
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .add-to-cart:hover {
+            background-color: #e03a00;
+        }
+
+        .line {
+            border-top: 1px solid var(--text-color);
+            margin: 2rem 0;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 1024px) {
+            .container {
+                padding: 0 4.4rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 0 1.6rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #navMenu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                padding: 1rem 0;
+            }
+
+            #navMenu.show {
+                display: flex;
+            }
+
+            /* Exibir apenas uma coluna de produtos em dispositivos móveis */
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Conteúdo do corpo do HTML (header, search-bar, e lista de produtos) -->
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+
+        function searchProduct() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const productList = document.getElementById('productList');
+            const products = productList.getElementsByClassName('product-card');
+
+            for (let i = 0; i < products.length; i++) {
+                const productName = products[i].querySelector('h4').textContent.toLowerCase();
+                if (productName.includes(input)) {
+                    products[i].style.display = '';
+                } else {
+                    products[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

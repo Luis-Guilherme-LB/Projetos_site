@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Danados Tech - Equipamentos de alta qualidade a preços acessíveis. Conheça nossa história e equipe.">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="intro.css">
+    <title>Danados Tech - Sobre</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --primary-color: #f9532d;
+            --primary-dark: #1F252E;
+            --text-color: #ffffff;
+            --nav-bg-color: #2C2F35;
+            --menu-bg-color: rgba(44, 47, 53, 0.95);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-color);
+        }
+
+        .container {
+            padding: 0 8.4rem;
+            text-align: left; /* Alinhamento à esquerda */
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background: var(--nav-bg-color);
+            box-shadow: 0 4px 17px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .logo a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background: var(--text-color);
+            margin: 4px;
+            border-radius: 5px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        ul {
+            display: flex;
+            gap: 0.6rem;
+            list-style-type: none;
+            transition: all var(--transition-speed) ease;
+            justify-content: center;
+        }
+
+        li {
+            position: relative;
+            overflow: hidden;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 36px;
+            transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+            text-align: center;
+            opacity: 0;
+            animation: slideInBottom 0.5s ease forwards;
+        }
+
+        li a.active,
+        li a:hover {
+            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilo do menu para telas menores */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            ul {
+                display: none;
+                flex-direction: column;
+                background: var(--menu-bg-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 0;
+                margin: 0;
+                transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+                transform: translateY(-20px);
+                opacity: 0;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                align-items: center;
+            }
+
+            ul.active {
+                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .page-header {
+                position: relative;
+            }
+        }
+
+        /* Outros estilos para o conteúdo */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr;
+            margin-top: 3rem;
+            text-align: left; /* Alinhamento à esquerda */
+        }
+
+        .main h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards 0.3s;
+        }
+
+        .main h2 {
+            font-size: 2rem;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards 0.5s;
+        }
+
+        .main p {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards 0.7s;
+        }
+
+        @media screen and (max-width: 600px) {
+            .main h1 {
+                font-size: 2.5rem;
+            }
+
+            .main h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.6rem;
+            }
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.7rem;
+            gap: 1.4rem;
+        }
+
+        .social a {
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            border: 1.6px solid var(--text-color);
+            border-radius: 50%;
+            padding: 0.39rem;
+            transition: transform var(--transition-speed) ease-in-out, background-color var(--transition-speed) ease;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards 0.8s;
+        }
+
+        .social a:hover {
+            transform: scale(1.1);
+            color: var(--primary-dark);
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        /* Estilos para direitos de uso */
+        .rights {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .rights p {
+            margin: 0.5rem 0;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInBottom {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <div class="page-header">
+            <div class="logo">
+                <a href="#">Danados Tech</a>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Menu" tabindex="0" role="button" aria-expanded="false">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="menu" aria-label="Navegação" role="navigation">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html" class="active">Sobre</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                
+                
+            </ul>
+        </div>
+    </header>
+    <main class="container">
+        <section class="main">
+            <h3>Bem-vindo à Danados Tech</h3>
+                <h1>Sobre Nós</h1>
+                <div class="about">   
+            <h2>Nossa História</h2>
+            <br>
+            <p>A Danados Tech nasceu da paixão por tecnologia e a necessidade de oferecer equipamentos de alta qualidade a preços acessíveis. Desde o início, nosso objetivo foi criar uma loja que fosse mais do que um simples ponto de venda, mas um verdadeiro centro de soluções para entusiastas e profissionais da tecnologia.</p>
+            <br>
+            <p>Com uma equipe dedicada e conhecimento profundo do setor, temos orgulho de dizer que nossos clientes sempre encontram o que precisam e muito mais.</p>
+            <br>
+            <h2>Missão e Visão</h2>
+            <br>
+            <p>Nosso compromisso é fornecer as melhores ofertas e um atendimento excepcional para garantir a satisfação dos nossos clientes. Acreditamos que a tecnologia deve ser acessível a todos, e trabalhamos incansavelmente para fazer isso acontecer.</p>
+            <p>Visamos ser a loja de referência em produtos de tecnologia no Brasil, reconhecida pela qualidade e pelo excelente atendimento.</p>
+
+            <h2>Diferenciais</h2>
+            <br>
+            <p>Trabalhamos com os melhores fornecedores e oferecemos garantia em todos os nossos produtos. Além disso, nossa equipe está sempre pronta para oferecer suporte e consultoria, ajudando nossos clientes a escolherem o que melhor atende às suas necessidades.</p>
+            <br>
+            <h2>Equipe</h2>
+            <br>
+            <p>Nosso time é formado por especialistas apaixonados por tecnologia. Cada membro traz um conjunto único de habilidades e experiência, garantindo que nossos clientes recebam o melhor suporte possível.</p>
+            <br>
+            <h2>Contato</h2>
+            <br>
+            <p>Estamos disponíveis para atender você. Entre em contato conosco para dúvidas, sugestões ou qualquer informação sobre nossos produtos e serviços. Nossa equipe está sempre pronta para ajudar!</p>
+            <p>Se você tiver alguma dúvida, não hesite em entrar em contato conosco pelo e-mail: <a href="mailto:support@danadostech.com.br">suporte@danadostech.com.br</a></p>
+            <div class="social">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </section>
+        <div class="rights">
+            <p>&copy; 2024 Danados Tech. Todos os direitos reservados.</p>
+        </div>
+    </main>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
