@@ -28,11 +28,13 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--primary-dark);
             color: var(--text-color);
+            
         }
 
         .container {
             padding: 0 8.4rem;
         }
+        
 
         /* Barra de pesquisa */
         .search-bar {
@@ -129,6 +131,9 @@
         ul {
             display: flex;
             gap: .6rem;
+        }
+        img{
+            width: 300px;
         }
 
         li a {
@@ -239,8 +244,78 @@
 </head>
 
 <body>
-    <!-- Conteúdo do corpo do HTML (header, search-bar, e lista de produtos) -->
-
+    <header>
+        <div class="container page-header">
+            <div class="logo"><a href="#">Danados Tech</a></div>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="produtos.html" class="active">Produtos</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="container search-bar">
+        <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="Buscar produto...">
+    </div>
+    
+    <div class="container products" id="productList">
+        <div class="product-card" id="fonte">
+            <h4>Fonte</h4>
+            <img src="img/Fonte Corsair 750W.png" alt="">
+            <p>Fonte de alimentação 600W</p>
+            <a href="fonte.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="gabinete">
+            <h4>Gabinete</h4>
+            <img src="img/Gabinete Gamer RGB.png" alt="">
+            <p>Gabinete gamer com RGB</p>
+            <a href="gabinete.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="headset">
+            <h4>Headset</h4>
+            <img src="img/Headset HyperX Cloud I .png" alt="">
+            <p>Headset com som 7.1</p>
+            <a href="headset.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="memoria-ram">
+            <h4>Memória RAM</h4>
+            <img src="img/Memória RAM 16GB DDR4.png" alt="">
+            <p>DDR4 16GB 3200MHz</p>
+            <a href="memoriaram.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="mouse">
+            <h4>Mouse</h4>
+            <img src="img/Mouse Gamer Logitech G502.png" alt="">
+            <p>Mouse gamer 7200 DPI</p>
+            <a href="mouse.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="placa-mae">
+            <h4>Placa Mãe</h4>
+            <img src="img/Placa-Mãe ASUS ROG Strix.png" alt="">
+            <p>ATX para Intel 10ª geração</p>
+            <a href="placamãe.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="placa-video">
+            <h4>Placa de Vídeo</h4>
+            <img src="img/Placa de Vídeo NVIDIA RTX 3070.png" alt="">
+            <p>NVIDIA RTX 3060</p>
+            <a href="placavideo.html" class="add-to-cart">Ver Mais</a>
+        </div>
+        <div class="product-card" id="processador">
+            <h4>Processador</h4>
+            <img src="img/processador intel i7.png" alt="">
+            <p>Intel Core i7 11700K</p>
+            <a href="processador.html" class="add-to-cart">Ver Mais</a>
+        </div>
+    </div>
+    <footer style="text-align: center;"><br><br><p>&copy; 2024 Danados Tech. Todos os direitos reservados.</p><br><br></footer>
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
